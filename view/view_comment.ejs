@@ -1,0 +1,87 @@
+<%- include('header') %>
+<div class="dashboard-wrapper">
+    <div class="container-fluid  dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">view comment</h2>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <!-- ============================================================== -->
+            <!-- basic table  -->
+            <!-- ============================================================== -->
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="card">
+                    <h5 class="card-header">Blog</h5>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <form action="">
+                                <div class="d-flex my-3">
+                                    <input class="form-control" name="search" type="text" placeholder="Search..">
+                                <input type="submit" value="search" name="searching" class="mx-2">
+                                </div>
+                            </form>
+                            <table class="table table-striped table-bordered first text-center">
+                                <thead>
+                                    <tr>
+                                        <th>Post Title</th>
+                                        <th>name</th>
+                                        <th>email</th>
+                                        <th>date</th>
+                                        <th>Content</th>
+                                        <th>operation</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for(var dt of data){ %>
+                                        <tr>
+                                            <td><%=dt.oldid.title%></td>
+                                            <td><%=dt.name%></td>
+                                            <td><%=dt.email%></td>
+                                            <td><%=dt.date%></td>
+                                            <td><%=dt.comment%></td>
+                                            <td>
+                                                
+                                                <% if(dt.isActive){ %>
+                                                    <a href="?id=<%= dt.id %>&status=deActive"><i class="fa-regular fa-circle-check" style="color: rgb(101, 187, 16); font-size: 20px;"></i></a>
+                                                    <% }else{ %>
+                                                    <a href="?id=<%= dt.id %>&status=Active"><i class="fa-regular fa-circle-check" style="font-size: 20px;"></i></a>
+                                                    <% } %>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Post Title</th>
+                                        <th>name</th>
+                                        <th>email</th>
+                                        <th>date</th>
+                                        <th>Content</th>
+                                        <th>operation</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="6">
+                                            
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end basic table  -->
+            <!-- ============================================================== -->
+        </div>
+    </div>
+<%- include('footer') %>

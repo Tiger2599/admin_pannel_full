@@ -1,0 +1,107 @@
+<%- include('header') %>
+<div class="dashboard-wrapper">
+    <div class="container-fluid  dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">view subcatagory</h2>
+                    <% if(locals.flash.success && locals.flash.success.length > 0) {%>
+                        <div class="alert alert-success">
+                            <%= locals.flash.success %>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <!-- ============================================================== -->
+            <!-- basic table  -->
+            <!-- ============================================================== -->
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <form>
+                                <div class="d-flex my-3">
+                                    <input class="form-control" name="search" type="text" placeholder="Search..">
+                                    <input type="submit" value="search" name="searching" class="mx-2">
+                                </div>
+                            </form>
+                            <form action="/subcatagory/muldel" method="post">
+                                <table class="table table-striped table-bordered first text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <input type="checkbox" id="multidelet">
+                                                <input type="submit" value="delet">
+                                            </th>
+                                            <th>catagory</th>
+                                            <th>name</th>
+                                            <th>Content</th>
+                                            <th>image</th>
+                                            <th>operation</tr>
+                                    </thead>
+                                    <tbody>
+                                        <% for(var dt of data){ %>
+                                            <tr>
+                                                <td><input type="checkbox" class="singleDelet" value="<%= dt.id %>" name="muldel[]"></td>
+                                                <td><%=dt.catagory.catagory%></td>
+                                                <td><%=dt.name%></td>
+                                                <td><%=dt.content%></td>
+                                                <td><img src="<%=dt.image%>" height="50" width="50"></td>
+                                                <td>
+                                                    <a href="/subcatagory/delet/<%= dt.id %>"><i class="fa-solid fa-trash " style="font-size: 20px; margin-right: 8px;"></i></a>
+                                                    <a href="/subcatagory/edit_page/<%= dt.id %>"><i class="fa-solid fa-pen-to-square" style="font-size: 20px; margin-right: 8px;"></i></a>
+                                                    
+                                                    <% if(dt.isActive){ %>
+                                                        <a href="?id=<%= dt.id %>&status=deActive"><i class="fa-regular fa-circle-check" style="color: rgb(101, 187, 16); font-size: 20px;"></i></a>
+                                                        <% }else{ %>
+                                                        <a href="?id=<%= dt.id %>&status=Active"><i class="fa-regular fa-circle-check" style="font-size: 20px;"></i></a>
+                                                        <% } %>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th></th>
+                                            <th>catagory</th>
+                                            <th>name</th>
+                                            <th>content</th>
+                                            <th>image</th>
+                                            <th>operation</th>
+
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6">
+                                                <% var prevabc = cpage %>
+                                                <% prev = --prevabc %>
+                                                <% if(prev>0){ %>
+                                                    <a href="?page=<%=prev%>">prev</a>
+                                                    <% } %>
+                                                <a href="?page=<%= cpage %>"><%= cpage %></a>
+                                                <% next = ++cpage %>
+                                                <% if(cpage <= pagenum){ %>
+                                                    <a href="?page=<%= next %>">next</a>
+                                                    <% } %>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end basic table  -->
+            <!-- ============================================================== -->
+        </div>
+    </div>
+<%- include('footer') %>

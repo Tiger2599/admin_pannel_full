@@ -1,0 +1,69 @@
+<%- include('header') %>
+    <div class="dashboard-wrapper">
+        <div class="container-fluid  dashboard-content">
+
+            <!-- page heading -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="page-header">
+                        <h2 class="pageheader-title">Add subcatagory</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="card">
+                        <h5 class="card-header">Validation Types</h5>
+                        <div class="card-body">
+                            <form id="validationform" method="post" action="/subcatagory/subcat_update" enctype="multipart/form-data">
+                                <input type="hidden" name="uid" value="<%= data.id %>">
+                                <div class="form-group row">
+                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">name</label>
+                                    <div class="col-12 col-sm-8 col-lg-6">
+                                        <input type="text" name="name" value="<%= data.name %>"
+                                            class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">content</label>
+                                    <div class="col-12 col-sm-8 col-lg-6">
+                                        <textarea type="text" name="content" 
+                                            class="form-control"><%= data.content %></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">image</label>
+                                    <div class="col-sm-4 col-lg-3 mb-3 mb-sm-0">
+                                        <input id="pass2" type="file" name="image" value="<%= data.image %>" class="form-control-file">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">select catogory</label>
+                                    <div class="col-12 col-sm-8 col-lg-6">
+                                        <select name="catagory" class="form-control">
+                                            <option value="">--select option--</option>
+                                            <% for(var ct of catdata) {%>
+                                            <option value="<%= ct.id %>" <% if(data.catagory == ct.id){ %> <%= 'selected' %> <% } %> ><%= ct.catagory %></option>
+                                            <% } %>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+
+                                <div class="form-group row text-right">
+                                    <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+                                        <button type="submit" class="btn btn-space btn-primary">Submit</button>
+                                        <button class="btn btn-space btn-secondary">Cancel</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <%- include('footer') %>
